@@ -1,0 +1,3 @@
+CREATE USER IF NOT EXISTS 'justgetit'@'localhost' IDENTIFIED BY 'Just-Get-1t';
+
+GRANT SELECT, INSERT, UPDATE, DELETE, CREATE TEMPORARY TABLES, EXECUTE, SHOW VIEW ON `justgetit`.* TO `justgetit`@`localhost`;
