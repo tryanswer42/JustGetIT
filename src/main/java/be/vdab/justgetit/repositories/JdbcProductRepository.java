@@ -28,7 +28,7 @@ public class JdbcProductRepository implements ProductRepository {
     @Override
     public void update(Product product) {
         String sql = "update producten set naam=?,aankoopprijs=?,verkoopprijs=?,categorie=?,voorraad=?,minimaleBestelhoeveelheid=? where id=?";
-        if (template.update(sql,product.getNaam(), product.getAankoopprijs(), product.getVerkoopprijs(), product.getCategorie(),product.getVoorraad(),product.getMinimaleBestelhoeveelheid()) == 0) {
+        if (template.update(sql,product.getNaam(), product.getAankoopprijs(), product.getVerkoopprijs(), product.getCategorie(),product.getVoorraad(),product.getMinimaleBestelhoeveelheid(),product.getId()) == 0) {
             throw new ProductNietGevondenException("Product niet gevonden");
         }
     }
