@@ -47,8 +47,8 @@ public class JdbcCategorieRepository implements CategorieRepository {
     public void update(Categorie categorie) {
         String sql = "update categorieen set naam=?, parentCategorie=?, isSubcategorie=?," +
                 "winstmargeIsPercentage=?, winstmarge=? where id=?";
-        if (template.update(sql, categorie.getId(), categorie.getNaam(), categorie.getParentCategorie(), categorie.isSubcategorie(),
-                categorie.isWinstmargeIsPercentage(), categorie.getWinstmarge())==0){
+        if (template.update(sql, categorie.getNaam(), categorie.getParentCategorie(), categorie.isSubcategorie(),
+                categorie.isWinstmargeIsPercentage(), categorie.getWinstmarge(),  categorie.getId())==0){
             throw new CategorieNietGevondenException();
         }
     }

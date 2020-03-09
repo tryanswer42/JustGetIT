@@ -48,14 +48,10 @@ public class JdbcCategorieRepositorieTest
     void findByOnbestaandeIdVindtGeenCategorie() {
         assertThat(repository.findById(-1)).isEmpty();
     }
-    private long idVanTestSubCategorie() {
-        return super.jdbcTemplate.queryForObject("select id from categorieen " +
-                "where naam = 'testSub'", Long.class);
-    }
 
     @Test
     void delete() {
-        long id = idVanTestSubCategorie();
+        long id = idVanTestCategorie();
         repository.delete(id);
         assertThat(super.countRowsInTableWhere(CATEGORIEEN, "id= "+id)).isZero();
     }
@@ -63,11 +59,11 @@ public class JdbcCategorieRepositorieTest
     @Test
     void update() {
         long id = idVanTestCategorie();
-        Categorie categorie = new Categorie(id, "testNieuwe",
-                true, false, BigDecimal.TEN);
+        Categorie categorie = new Categorie(id, "testNieuwe",0,
+                true, false, BigDecimal.ONE);
         repository.update(categorie);
-        assertThat(super.jdbcTemplate.queryForObject("select naam from categorieen where id = ?", String.class, id))
-                .isEqualTo("testNieuwe");
+        assertThat(super.jdbcTemplate.queryForObject("select winstmarge from categorieen where id = ?", BigDecimal.class, id))
+                .isOne();
     }
 
     @Test
