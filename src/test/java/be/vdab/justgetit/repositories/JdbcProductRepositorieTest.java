@@ -37,7 +37,7 @@ public class JdbcProductRepositorieTest
     @Test
     void update() {
         long id = idVanTestProduct();
-        Product product = new Product(id, "testNieuwe", BigDecimal.TEN, BigDecimal.TEN, 1, 1, 1);
+        Product product = new Product(id, "testNieuwe", BigDecimal.TEN, BigDecimal.TEN, 4, 1, 1);
         repository.update(product);
         assertThat(super.jdbcTemplate.queryForObject("select naam from producten where id = ?", String.class, id))
                 .isEqualTo("testNieuwe");
@@ -69,7 +69,7 @@ public class JdbcProductRepositorieTest
 
     @Test
     void findByCategory() {
-        assertThat(repository.findByCategory(1)).extracting(product -> product.getCategorie()).contains(1);
+        assertThat(repository.findByCategory(5)).extracting(product -> product.getCategorie()).contains(5);
     }
 
     //----------------------------------------------------------
