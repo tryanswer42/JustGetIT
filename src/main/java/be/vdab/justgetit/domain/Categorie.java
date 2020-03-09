@@ -1,25 +1,24 @@
 package be.vdab.justgetit.domain;
 
-import javax.persistence.*;
+import java.math.BigDecimal;
 
-@Entity
-@Table(name = "categorieen")
 public class Categorie {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private String naam;
 
-    protected Categorie() {
-    }
+    private final long id;
+    private final String naam;
+    private final long parentCategorie;
+    private final boolean isSubcategorie;
+    private final boolean winstmargeIsPercentage;
+    private final BigDecimal winstmarge;
 
-    public Categorie(String naam) {
-        this.naam = naam;
-    }
-
-    public Categorie(long id, String naam) {
+    public Categorie(long id, String naam, long parentCategorie, boolean isSubcategorie,
+                     boolean winstmargeIsPercentage, BigDecimal winstmarge) {
         this.id = id;
         this.naam = naam;
+        this.parentCategorie = parentCategorie;
+        this.isSubcategorie = isSubcategorie;
+        this.winstmargeIsPercentage = winstmargeIsPercentage;
+        this.winstmarge = winstmarge;
     }
 
     public long getId() {
@@ -28,5 +27,19 @@ public class Categorie {
 
     public String getNaam() {
         return naam;
+    }
+
+    public long getParentCategorie() {
+        return parentCategorie;
+    }
+
+    public boolean isSubcategorie() {
+        return isSubcategorie;
+    }
+
+
+
+    public BigDecimal getWinstmarge() {
+        return winstmarge;
     }
 }
