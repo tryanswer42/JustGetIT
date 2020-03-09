@@ -5,14 +5,24 @@ public class User {
     private final String naam;
     private final String login;
     private final String wachtwoord;
-    private final Functie functie;
+    private final boolean isManager;
+    private final boolean isBediende;
 
-    public User(long id, String naam, String login, String wachtwoord, Functie functie) {
+    public User(long id, String naam, String login, String wachtwoord, boolean isManager, boolean isBediende) {
         this.id = id;
         this.naam = naam;
         this.login = login;
         this.wachtwoord = wachtwoord;
-        this.functie = functie;
+        this.isManager = isManager;
+        this.isBediende = isBediende;
+    }
+
+    public boolean isManager() {
+        return isManager;
+    }
+
+    public boolean isBediende() {
+        return isBediende;
     }
 
     public long getId() {
@@ -31,7 +41,4 @@ public class User {
         return wachtwoord;
     }
 
-    public Functie getFunctie() {
-        return functie;
-    }
 }
