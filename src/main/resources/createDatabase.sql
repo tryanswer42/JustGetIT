@@ -29,7 +29,7 @@ CREATE TABLE `categorieen` (
   `naam` varchar(45) NOT NULL,
   `parentCategorie` int DEFAULT NULL,
   `isSubcategorie` tinyint NOT NULL,
-  `winstmargeType` enum('bedrag','percentage') NOT NULL DEFAULT 'percentage',
+  `winstmargeIsPercentage` tinyint NOT NULL DEFAULT '1',
   `winstmarge` decimal(12,2) NOT NULL DEFAULT '10.00',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -41,7 +41,7 @@ CREATE TABLE `categorieen` (
 
 LOCK TABLES `categorieen` WRITE;
 /*!40000 ALTER TABLE `categorieen` DISABLE KEYS */;
-INSERT INTO `categorieen` VALUES (4,'boeken',NULL,0,'percentage',10.00),(5,'CD\'s',NULL,0,'percentage',10.00),(6,'elektronische toestellen',NULL,0,'percentage',10.00),(7,'kleding',NULL,0,'percentage',10.00);
+INSERT INTO `categorieen` VALUES (4,'boeken',NULL,0,1,10.00),(5,'CD\'s',NULL,0,1,10.00),(6,'elektronische toestellen',NULL,0,1,10.00),(7,'kleding',NULL,0,1,10.00);
 /*!40000 ALTER TABLE `categorieen` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -114,4 +114,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-09 11:07:12
+-- Dump completed on 2020-03-09 12:06:30
