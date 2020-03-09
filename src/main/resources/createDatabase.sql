@@ -18,13 +18,13 @@ USE `justgetit`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `categorien`
+-- Table structure for table `categorieen`
 --
 
-DROP TABLE IF EXISTS `categorien`;
+DROP TABLE IF EXISTS `categorieen`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `categorien` (
+CREATE TABLE `categorieen` (
   `id` int NOT NULL AUTO_INCREMENT,
   `naam` varchar(45) NOT NULL,
   `parentCategorie` int DEFAULT NULL,
@@ -36,13 +36,13 @@ CREATE TABLE `categorien` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `categorien`
+-- Dumping data for table `categorieen`
 --
 
-LOCK TABLES `categorien` WRITE;
-/*!40000 ALTER TABLE `categorien` DISABLE KEYS */;
-INSERT INTO `categorien` VALUES (4,'boeken',NULL,0,'percentage',10.00),(5,'CD\'s',NULL,0,'percentage',10.00),(6,'elektronische toestellen',NULL,0,'percentage',10.00),(7,'kleding',NULL,0,'percentage',10.00);
-/*!40000 ALTER TABLE `categorien` ENABLE KEYS */;
+LOCK TABLES `categorieen` WRITE;
+/*!40000 ALTER TABLE `categorieen` DISABLE KEYS */;
+INSERT INTO `categorieen` VALUES (4,'boeken',NULL,0,'percentage',10.00),(5,'CD\'s',NULL,0,'percentage',10.00),(6,'elektronische toestellen',NULL,0,'percentage',10.00),(7,'kleding',NULL,0,'percentage',10.00);
+/*!40000 ALTER TABLE `categorieen` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -63,7 +63,7 @@ CREATE TABLE `producten` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `naam_UNIQUE` (`naam`),
   KEY `productCategorie_idx` (`categorie`),
-  CONSTRAINT `productCategorie` FOREIGN KEY (`categorie`) REFERENCES `categorien` (`id`) ON UPDATE CASCADE
+  CONSTRAINT `productCategorie` FOREIGN KEY (`categorie`) REFERENCES `categorieen` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -88,6 +88,8 @@ CREATE TABLE `users` (
   `naam` varchar(45) NOT NULL,
   `login` varchar(45) NOT NULL,
   `wachtwoord` varchar(45) NOT NULL,
+  `isManager` tinyint NOT NULL DEFAULT '0',
+  `isBediende` tinyint NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `login_UNIQUE` (`login`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -99,7 +101,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'manager','manager','manager'),(2,'bediende','bediende','bediende');
+INSERT INTO `users` VALUES (1,'manager','manager','manager',0,1),(2,'bediende','bediende','bediende',0,1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -112,4 +114,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-09 10:31:03
+-- Dump completed on 2020-03-09 11:07:12
