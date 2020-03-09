@@ -1,14 +1,27 @@
 package be.vdab.justgetit.domain;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
+
 public class User {
+    @NotBlank
+    @PositiveOrZero
     private final long id;
+    @NotBlank
     private final String naam;
+    @NotBlank
     private final String login;
+    @NotBlank
+    @Size(min=8)
     private final String wachtwoord;
+    @NotNull
     private final boolean isManager;
+    @NotNull
     private final boolean isBediende;
 
-    public User(long id, String naam, String login, String wachtwoord, boolean isManager, boolean isBediende) {
+    public User(@NotBlank @PositiveOrZero long id, @NotBlank String naam, @NotBlank String login, @NotBlank String wachtwoord, @NotNull boolean isManager, @NotNull boolean isBediende) {
         this.id = id;
         this.naam = naam;
         this.login = login;
