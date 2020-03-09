@@ -8,16 +8,16 @@ public class Categorie {
     private final String naam;
     private final long parentCategorie;
     private final boolean isSubcategorie;
-    private final WinstmargeType winstmargeType;
+    private final boolean winstmargeIsPercentage;
     private final BigDecimal winstmarge;
 
     public Categorie(long id, String naam, long parentCategorie, boolean isSubcategorie,
-                     WinstmargeType winstmargeType, BigDecimal winstmarge) {
+                     boolean winstmargeIsPercentage, BigDecimal winstmarge) {
         this.id = id;
         this.naam = naam;
         this.parentCategorie = parentCategorie;
         this.isSubcategorie = isSubcategorie;
-        this.winstmargeType = winstmargeType;
+        this.winstmargeIsPercentage = winstmargeIsPercentage;
         this.winstmarge = winstmarge;
     }
 
@@ -37,8 +37,8 @@ public class Categorie {
         return isSubcategorie;
     }
 
-    public WinstmargeType getWinstmargeType() {
-        return winstmargeType;
+    public boolean isWinstmargeIsPercentage() {
+        return winstmargeIsPercentage;
     }
 
     public BigDecimal getWinstmarge() {
