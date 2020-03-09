@@ -1,14 +1,14 @@
 package be.vdab.justgetit.repositories;
 
 import be.vdab.justgetit.domain.Categorie;
-import be.vdab.justgetit.domain.WinstmarginTypeGewoon;
+import be.vdab.justgetit.domain.WinstmargeType;
 import be.vdab.justgetit.exceptions.CategorieNietGevondenException;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +19,11 @@ public class JdbcCategorieRepository implements CategorieRepository {
 
     private final JdbcTemplate template;
     private final SimpleJdbcInsert insert;
-    private final RowMapper<Categorie> categorieRowMapper;
+    private final RowMapper<Categorie> categorieRowMapper =
+            ((result, rowNum) ->
+                    new Categorie(result.getLong("id"), result.getString("naam"),
+                            result.getLong("parentCategorie"), result.getBoolean("isSubcategorie"),
+                            result.getString("winstmargeType")., result.getBigDecimal("winstmarge")))
 
     public JdbcCategorieRepository(JdbcTemplate template) {
         this.template = template;
@@ -32,20 +36,20 @@ public class JdbcCategorieRepository implements CategorieRepository {
     public long create(Categorie categorie) {
         Map<String, Object> kolomWaarden = new HashMap<>();
         kolomWaarden.put("naam", categorie.getNaam());
+        kolomWaarden.put("parentCategorie", categorie.getParentCategorie());
         kolomWaarden.put("isSubcategorie", categorie.isSubcategorie());
-        kolomWaarden.put("idVanSubcategorie", categorie.getIdVanSubcategorie());
-        kolomWaarden.put("winstmargin", categorie.getWinstmargin());
-        kolomWaarden.put("winstmarginTypeGewoon", categorie.getWinstmarginTypeGewoon());
+        kolomWaarden.put("winstmargeType", categorie.getWinstmargeType());
+        kolomWaarden.put("winstmarge", categorie.getWinstmarge());
         Number id = insert.executeAndReturnKey(kolomWaarden);
         return id.longValue();
     }
 
     @Override
     public void update(Categorie categorie) {
-        String sql = "update categorieen set naam=?, isSubcategorie=?, idVanSubcategorie=?" +
-                "winstmargin=?, winstmarginTypeGewoon=?";
-        if (template.update(sql, categorie.getNaam(), categorie.isSubcategorie(), categorie.getIdVanSubcategorie(),
-                categorie.getWinstmargin(), categorie.getWinstmarginTypeGewoon())==0){
+        String sql = "update categorieen set naam=?, parentCategorie=?, isSubcategorie=?," +
+                "winstmargeType=?, winstmarge=?";
+        if (template.update(sql, categorie.getNaam(), categorie.getParentCategorie(), categorie.isSubcategorie(),
+                categorie.getWinstmargeType(), categorie.getWinstmarge())==0){
             throw new CategorieNietGevondenException();
         }
     }
@@ -57,11 +61,17 @@ public class JdbcCategorieRepository implements CategorieRepository {
 
     @Override
     public Optional<Categorie> findById(long id) {
-        return Optional.empty();
+        try {
+            String sql = "select id, naam, parentCategorie, isSubcategorie, winstmargeType, winstmarge from categorieen where id=?";
+            return Optional.of(template.queryForObject(sql, categorieRowMapper, id));
+        } catch (IncorrectResultSizeDataAccessException ex){
+            return Optional.empty();
+        }
     }
 
     @Override
     public List<Categorie> findAll() {
-        return null;
+        String sql = "select id, naam, parentCategorie, isSubcategorie, winstmargeType, winstmarge from categorieen order by id";
+        return template.query(sql, categorieRowMapper);
     }
 }
