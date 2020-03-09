@@ -37,9 +37,7 @@ public class Categorie {
         return isSubcategorie;
     }
 
-    public boolean isWinstmargeIsPercentage() {
-        return winstmargeIsPercentage;
-    }
+
 
     public BigDecimal getWinstmarge() {
         return winstmarge;

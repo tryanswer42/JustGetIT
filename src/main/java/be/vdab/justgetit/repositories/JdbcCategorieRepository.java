@@ -1,7 +1,6 @@
 package be.vdab.justgetit.repositories;
 
 import be.vdab.justgetit.domain.Categorie;
-import be.vdab.justgetit.domain.WinstmargeType;
 import be.vdab.justgetit.exceptions.CategorieNietGevondenException;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
