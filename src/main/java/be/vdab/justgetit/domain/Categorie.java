@@ -1,21 +1,35 @@
 package be.vdab.justgetit.domain;
 
+import javax.persistence.Column;
 import java.math.BigDecimal;
 
 public class Categorie {
 
-    private final long id;
-    private final String naam;
-    private final long parentCategorie;
-    private final boolean isSubcategorie;
-    private final boolean winstmargeIsPercentage;
-    private final BigDecimal winstmarge;
+    private long id;
+    private String naam;
+    private long parentCategorie;
+    private boolean isSubcategorie;
+    @Column(name = "winstmargeType")
+    private boolean winstmargeIsPercentage;
+    private BigDecimal winstmarge;
 
     public Categorie(long id, String naam, long parentCategorie, boolean isSubcategorie,
                      boolean winstmargeIsPercentage, BigDecimal winstmarge) {
         this.id = id;
         this.naam = naam;
         this.parentCategorie = parentCategorie;
+        this.isSubcategorie = isSubcategorie;
+        this.winstmargeIsPercentage = winstmargeIsPercentage;
+        this.winstmarge = winstmarge;
+    }
+
+    protected Categorie() {
+    }
+
+    public Categorie(long id, String naam, boolean isSubcategorie,
+                     boolean winstmargeIsPercentage, BigDecimal winstmarge) {
+        this.id = id;
+        this.naam = naam;
         this.isSubcategorie = isSubcategorie;
         this.winstmargeIsPercentage = winstmargeIsPercentage;
         this.winstmarge = winstmarge;
@@ -37,7 +51,9 @@ public class Categorie {
         return isSubcategorie;
     }
 
-
+    public boolean isWinstmargeIsPercentage() {
+        return winstmargeIsPercentage;
+    }
 
     public BigDecimal getWinstmarge() {
         return winstmarge;

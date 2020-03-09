@@ -12,21 +12,24 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 
+import java.math.BigDecimal;
+
 @JdbcTest
-@Import(JdbcCategorieRepositorie.class)
-@Sql("insertCategorie.sql")
+@Import(JdbcCategorieRepository.class)
+@Sql("/insertCategorie.sql")
 public class JdbcCategorieRepositorieTest
         extends AbstractTransactionalJUnit4SpringContextTests {
-    private final JdbcCategorieRepositorie repository;
+    private final JdbcCategorieRepository repository;
     private final String CATEGORIEEN = "categorieen";
 
-    public JdbcCategorieRepositorieTest(JdbcCategorieRepositorie repository) {
+    public JdbcCategorieRepositorieTest(JdbcCategorieRepository repository) {
         this.repository = repository;
     }
 
     @Test
     void create() {
-        long id = repository.create(new Categorie("test"));
+        long id = repository.create(new Categorie(0, "test",
+                true, true, BigDecimal.TEN));
         assertThat(id).isPositive();
         assertThat(super.countRowsInTableWhere(CATEGORIEEN, "id= "+id)).isOne();
     }
@@ -60,7 +63,8 @@ public class JdbcCategorieRepositorieTest
     @Test
     void update() {
         long id = idVanTestCategorie();
-        Categorie categorie = new Categorie(id, "testNieuwe");
+        Categorie categorie = new Categorie(id, "testNieuwe",
+                true, false, BigDecimal.TEN);
         repository.update(categorie);
         assertThat(super.jdbcTemplate.queryForObject("select naam from categorieen where id = ?", String.class, id))
                 .isEqualTo("testNieuwe");
@@ -69,7 +73,8 @@ public class JdbcCategorieRepositorieTest
     @Test
     void updateOnbestaandeCategorieGeeftEenFout() {
         assertThatExceptionOfType(CategorieNietGevondenException.class).isThrownBy(() -> {
-            repository.update(new Categorie(-1, "test"));
+            repository.update(new Categorie(-1, "test",
+                    true, true, BigDecimal.TEN));
         });
     }
 }
