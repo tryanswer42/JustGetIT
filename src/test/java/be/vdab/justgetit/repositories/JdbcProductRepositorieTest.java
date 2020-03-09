@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 @JdbcTest
 @Import(JdbcProductRepository.class)
-@Sql("insertCategorieandProduct.sql")
+@Sql("/insertCategorieandProduct.sql")
 public class JdbcProductRepositorieTest
 
         extends AbstractTransactionalJUnit4SpringContextTests {
