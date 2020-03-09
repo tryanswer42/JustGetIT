@@ -14,6 +14,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.*;
 
 @JdbcTest
+@Sql("/insertTestUser.sql")
 @Import(JdbcUserRepository.class)
 class UserRepositoryTest extends AbstractTransactionalJUnit4SpringContextTests {
 
@@ -28,7 +29,12 @@ class UserRepositoryTest extends AbstractTransactionalJUnit4SpringContextTests {
                 "select id from users where naam = 'ikke'", Long.class);
     }
 
-    @Sql("insertTestUser.sql")
+    @Test
+    void findByNonExistingId() {
+        Optional<User> gelezenUser = repo.findById(-1);   // -1 wordt niet toegekend door autonumber field
+        assertThat(gelezenUser.isPresent()).isEqualTo(false);
+    }
+
     @Test
     void findByExistingId() {
         Optional<User> gelezenUser = repo.findById(getInsertedTestId());
@@ -36,9 +42,4 @@ class UserRepositoryTest extends AbstractTransactionalJUnit4SpringContextTests {
         assertThat(gelezenUser.get().getNaam()).isEqualTo("ikke");
     }
 
-    @Test
-    void findByNonExistingId() {
-        Optional<User> gelezenUser = repo.findById(-1);   // -1 wordt niet toegekend door autonumber field
-        assertThat(gelezenUser.isPresent()).isEqualTo(false);
-    }
 }
