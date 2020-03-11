@@ -37,6 +37,6 @@ public class DefaultProductService implements ProductService{
 
     @Override
     public List<Product> findByCategory(long CategoryId) {
-        return null;
+        return productRepository.findByCategory(CategoryId);
     }
 }
