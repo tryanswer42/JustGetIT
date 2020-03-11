@@ -5,43 +5,43 @@ import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.Set;
 
-@Entity
-@Table(name = "categorieen")
+//@Entity
+//@Table(name = "categorieen")
 public class Categorie {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String naam;
     private long parentCategorie;
     private boolean isSubcategorie;
     private boolean winstmargeIsPercentage;
     private BigDecimal winstmarge;
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "parentCategorie")
-    private Categorie parentCategory;
-    @OneToMany
-    @JoinColumn(name = "parentCategorie")
-    private Set<Categorie> subCategories;
+//    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+//    @JoinColumn(name = "parentCategorie")
+//    private Categorie parentCategory;
+//    @OneToMany
+//    @JoinColumn(name = "parentCategorie")
+//    private Set<Categorie> subCategories;
 
 
-    public void addSubCategorie(Categorie categorie) {
-
-    }
-    public void removeSubCategorie(Categorie categorie) {
-
-    }
-
-    public void setParentCategory(Categorie parentCategory) {
-        this.parentCategory = parentCategory;
-    }
-
-    public Categorie getParentCategory() {
-        return parentCategory;
-    }
-
-    public Set<Categorie> getSubCategories() {
-        return Collections.unmodifiableSet(subCategories);
-    }
+//    public void addSubCategorie(Categorie categorie) {
+//
+//    }
+//    public void removeSubCategorie(Categorie categorie) {
+//
+//    }
+//
+//    public void setParentCategory(Categorie parentCategory) {
+//        this.parentCategory = parentCategory;
+//    }
+//
+//    public Categorie getParentCategory() {
+//        return parentCategory;
+//    }
+//
+//    public Set<Categorie> getSubCategories() {
+//        return Collections.unmodifiableSet(subCategories);
+//    }
 
     protected Categorie() {
     }
