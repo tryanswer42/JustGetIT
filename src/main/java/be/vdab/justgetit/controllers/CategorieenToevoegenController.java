@@ -20,7 +20,7 @@ public class CategorieenToevoegenController {
         this.categorieService = categorieService;
     }
 
-    @GetMapping
+    @GetMapping("/toevoegen")
     public ModelAndView showForm(){
 
     ModelAndView modelAndView = new ModelAndView("categorieen");
@@ -29,7 +29,7 @@ public class CategorieenToevoegenController {
     return modelAndView;
 }
 
-//@PostMapping
+//@PostMapping("/toevoegen/form")
 //    public  ModelAndView categorieToevoegen();
 
 }
