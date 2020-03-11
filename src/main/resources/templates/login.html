@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title= 'login')"></head>
+<body>
+<!--<nav th:replace="fragments::menu"></nav>-->
+<form method="post" th:action="@{/login}">
+    <label class="gebruiker login">
+        Gebruiker
+        <input type="text" name="username" required autofocus/>
+    </label>
+    <label class="wachtwoord login">
+        Wachtwoord
+        <input type="password" name="wachtwoord" required/>
+    </label>
+    <button class="ok login">Login</button>
+</form>
+</body>
