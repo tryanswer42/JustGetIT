@@ -1,6 +1,6 @@
 LOCK TABLES `producten` WRITE;
 /*!40000 ALTER TABLE `producten` DISABLE KEYS */;
-INSERT INTO `producten` VALUES
+INSERT INTO `producten` (id,naam,aankoopprijs,verkoopprijs,categorie,voorraad,minimaleBestelhoeveelheid) VALUES
     (1,'Duin Messias',20,30,8,20,1),
     (30,'God-Keizer op Duin',20,30,8,20,1),
     (31,'Duin',20,30,8,20,1),

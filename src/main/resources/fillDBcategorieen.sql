@@ -1,6 +1,6 @@
 LOCK TABLES `categorieen` WRITE;
 /*!40000 ALTER TABLE `categorieen` DISABLE KEYS */;
-INSERT INTO `categorieen` VALUES
+INSERT INTO `categorieen` (id, naam, parentId, isSubCategorie, winstmargeIsPercentage, winstMarge) VALUES
     (8,'Fictie',4,1,1,10.00),
     (12,'Geschiedenis & Politiek',4,1,1,10.00),
     (13,'Mens & Maatschappij',4,1,1,10.00),
