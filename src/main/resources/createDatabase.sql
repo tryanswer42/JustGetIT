@@ -35,7 +35,7 @@ CREATE TABLE `categorieen` (
   PRIMARY KEY (`id`),
   KEY `CategorieSubCategorie` (`parentId`),
   CONSTRAINT `CategorieSubCategorie` FOREIGN KEY (`parentId`) REFERENCES `categorieen` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,7 +68,7 @@ CREATE TABLE `producten` (
   UNIQUE KEY `naam_UNIQUE` (`naam`),
   KEY `productCategorie_idx` (`categorie`),
   CONSTRAINT `productCategorie` FOREIGN KEY (`categorie`) REFERENCES `categorieen` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144,13 +144,13 @@ CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `naam` varchar(45) NOT NULL,
   `login` varchar(45) NOT NULL,
-  `wachtwoord` varchar(45) NOT NULL,
+  `wachtwoord` varchar(255) NOT NULL,
   `isManager` tinyint NOT NULL DEFAULT '0',
   `isBediende` tinyint NOT NULL DEFAULT '1',
   `enabled` tinyint DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `login_UNIQUE` (`login`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -172,4 +172,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-11 14:04:22
+-- Dump completed on 2020-03-11 15:15:45
