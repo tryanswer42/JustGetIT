@@ -27,13 +27,16 @@ DROP TABLE IF EXISTS `categorieen`;
 CREATE TABLE `categorieen` (
   `id` int NOT NULL AUTO_INCREMENT,
   `naam` varchar(45) NOT NULL,
-  `parentCategorie` int DEFAULT NULL,
+  `parentId` int DEFAULT NULL,
   `isSubcategorie` tinyint NOT NULL,
   `winstmargeIsPercentage` tinyint NOT NULL DEFAULT '1',
   `winstmarge` decimal(12,2) NOT NULL DEFAULT '10.00',
   `version` int NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `CategorieSubCategorie` (`parentId`),
+  CONSTRAINT `CategorieSubCategorie` FOREIGN KEY (`parentId`) REFERENCES `categorieen` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148,7 +151,7 @@ CREATE TABLE `users` (
   `enabled` tinyint DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `login_UNIQUE` (`login`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -157,7 +160,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'manager','manager','manager',0,1,1),(2,'bediende','bediende','bediende',0,1,1);
+INSERT INTO `users` VALUES (1,'manager','manager','manager',0,1),(2,'bediende','bediende','bediende',0,1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
