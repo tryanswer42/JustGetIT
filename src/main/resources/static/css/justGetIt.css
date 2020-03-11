@@ -16,3 +16,7 @@ ul{
     padding: 0;
     margin: 0;
 }
+.MenuElement {
+    text-align: center;
+    vertical-align: center;
+}
