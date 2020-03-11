@@ -13,10 +13,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@Repository
-public class JdbcCategorieRepository implements CategorieRepository {
+//@Repository
+public class JdbcCategorieRepository /*implements CategorieRepository*/ {
 
-    private final JdbcTemplate template;
+   /* private final JdbcTemplate template;
     private final SimpleJdbcInsert insert;
     private final RowMapper<Categorie> categorieRowMapper =
             ((result, rowNum) ->
@@ -35,7 +35,7 @@ public class JdbcCategorieRepository implements CategorieRepository {
     public long create(Categorie categorie) {
         Map<String, Object> kolomWaarden = new HashMap<>();
         kolomWaarden.put("naam", categorie.getNaam());
-        kolomWaarden.put("parentCategorie", categorie.getParentCategorie());
+        kolomWaarden.put("parentCategorie", categorie.getParentId());
         kolomWaarden.put("isSubcategorie", categorie.isSubcategorie());
         kolomWaarden.put("winstmargeIsPercentage", categorie.isWinstmargeIsPercentage());
         kolomWaarden.put("winstmarge", categorie.getWinstmarge());
@@ -45,9 +45,9 @@ public class JdbcCategorieRepository implements CategorieRepository {
 
     @Override
     public void update(Categorie categorie) {
-        String sql = "update categorieen set naam=?, parentCategorie=?, isSubcategorie=?," +
+        String sql = "update categorieen set naam=?, parentId=?, isSubcategorie=?," +
                 "winstmargeIsPercentage=?, winstmarge=? where id=?";
-        if (template.update(sql, categorie.getNaam(), categorie.getParentCategorie(), categorie.isSubcategorie(),
+        if (template.update(sql, categorie.getNaam(), categorie.getParentId(), categorie.isSubcategorie(),
                 categorie.isWinstmargeIsPercentage(), categorie.getWinstmarge(),  categorie.getId())==0){
             throw new CategorieNietGevondenException();
         }
@@ -61,7 +61,7 @@ public class JdbcCategorieRepository implements CategorieRepository {
     @Override
     public Optional<Categorie> findById(long id) {
         try {
-            String sql = "select id, naam, parentCategorie, isSubcategorie, winstmargeIsPercentage, winstmarge from categorieen where id=?";
+            String sql = "select id, naam, parentId, isSubcategorie, winstmargeIsPercentage, winstmarge from categorieen where id=?";
             return Optional.of(template.queryForObject(sql, categorieRowMapper, id));
         } catch (IncorrectResultSizeDataAccessException ex){
             return Optional.empty();
@@ -70,7 +70,7 @@ public class JdbcCategorieRepository implements CategorieRepository {
 
     @Override
     public List<Categorie> findAll() {
-        String sql = "select id, naam, parentCategorie, isSubcategorie, winstmargeIsPercentage, winstmarge from categorieen order by id";
+        String sql = "select id, naam, parentId, isSubcategorie, winstmargeIsPercentage, winstmarge from categorieen order by id";
         return template.query(sql, categorieRowMapper);
-    }
+    }*/
 }
