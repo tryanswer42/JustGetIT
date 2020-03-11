@@ -1,8 +1,11 @@
 package be.vdab.justgetit.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Collections;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -11,9 +14,11 @@ public class Categorie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @NotBlank
     private String naam;
 //    private long parentId;
     private boolean isSubcategorie;
+    @NotNull
     private boolean winstmargeIsPercentage;
     private BigDecimal winstmarge;
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
@@ -88,5 +93,18 @@ public class Categorie {
 
     public BigDecimal getWinstmarge() {
         return winstmarge;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Categorie)) return false;
+        Categorie categorie = (Categorie) o;
+        return Objects.equals(naam.toLowerCase(), categorie.naam.toLowerCase());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(naam.toLowerCase());
     }
 }
