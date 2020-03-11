@@ -77,3 +77,8 @@ nav>ul>li>a,nav ul li ul li a, nav>ul>li>form>span,#logoutbutton {
 h1 {
     clear: both;
 }
+
+.MenuElement {
+    text-align: center;
+    vertical-align: center;
+}
