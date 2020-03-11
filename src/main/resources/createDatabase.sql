@@ -32,7 +32,7 @@ CREATE TABLE `categorieen` (
   `winstmargeIsPercentage` tinyint NOT NULL DEFAULT '1',
   `winstmarge` decimal(12,2) NOT NULL DEFAULT '10.00',
   `version` int NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
   KEY `CategorieSubCategorie` (`parentId`),
   CONSTRAINT `CategorieSubCategorie` FOREIGN KEY (`parentId`) REFERENCES `categorieen` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -159,7 +159,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'manager','manager','manager',0,1),(2,'bediende','bediende','bediende',0,1);
+INSERT INTO `users` VALUES (1,'manager','manager','manager',0,1,1),(2,'bediende','bediende','bediende',0,1,1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
