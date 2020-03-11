@@ -37,9 +37,14 @@ class UserRepositoryTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     @Test
     void findByExistingId() {
-        Optional<User> gelezenUser = repo.findById(getInsertedTestId());
+        long id = getInsertedTestId();
+        Optional<User> gelezenUser = repo.findById(id);
         assertThat(gelezenUser.isPresent()).isEqualTo(true);
-        assertThat(gelezenUser.get().getNaam()).isEqualTo("ikke");
+        User user = gelezenUser.get();
+        assertThat(user.getNaam()).isEqualTo("ikke");
+        assertThat(user.getWachtwoord()).isEqualTo("ww");
+        assertThat(user.getLogin()).isEqualTo("gij");
+        assertThat(user.getId()).isEqualTo(id);
     }
 
 }
