@@ -25,7 +25,7 @@
         <select name="parentCategorie" >
             <option th:each="categ:${categorieList}"
                     th:object="${categ}"
-                    th:value="*{parentCategorie}">
+                    th:value="*{setParentCategory}">
                 <span th:text="*{naam}"></span>
             </option>
         </select>
