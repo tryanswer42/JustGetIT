@@ -1,8 +1,4 @@
-<<<<<<<<< Temporary merge branch 1
 -- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
-=========
--- MySQL dump 10.13  Distrib 8.0.18, for Win64 (x86_64)
->>>>>>>>> Temporary merge branch 2
 --
 -- Host: localhost    Database: justgetit
 -- ------------------------------------------------------
@@ -161,7 +157,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'manager','manager','{bcrypt}$2a$10$yXxcEKwK9eiRggZ1L5hHduIrUTW4fMyZnrTN6jmQdvX4gYHJKdyNC',0,1),(2,'bediende','bediende','{bcrypt}$2a$10$/rUxgaFVmYCKTfD..cSQOOBnbO95RyE8zl6TZ2PQE.q22oTC/2MjK',0,1);
+INSERT INTO `users` VALUES (1,'manager','manager','{bcrypt}$2a$10$yXxcEKwK9eiRggZ1L5hHduIrUTW4fMyZnrTN6jmQdvX4gYHJKdyNC',0,1,1),(2,'bediende','bediende','{bcrypt}$2a$10$/rUxgaFVmYCKTfD..cSQOOBnbO95RyE8zl6TZ2PQE.q22oTC/2MjK',0,1,1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -174,8 +170,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-<<<<<<<<< Temporary merge branch 1
 -- Dump completed on 2020-03-11 13:38:38
-=========
--- Dump completed on 2020-03-11 11:11:44
->>>>>>>>> Temporary merge branch 2

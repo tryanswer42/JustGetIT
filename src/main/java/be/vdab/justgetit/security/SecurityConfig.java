@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableWebSecurity
 class SecurityConfig extends WebSecurityConfigurerAdapter {
-    private static final String USERS_BY_USERNAME = "select login as username, wachtwoord as paswoord, '1' as enabled " +
+    private static final String USERS_BY_USERNAME = "select login as username, wachtwoord as paswoord, enabled " +
             "from users " +
             "where login=?";
     private static final String AUTHORITIES_BY_USERNAME = "select users.login as username, roles.naam as authorities " +
@@ -47,7 +47,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
 //                .mvcMatchers("/**").permitAll()
-                .mvcMatchers( "/login").permitAll()
+                .mvcMatchers( "/","/login").permitAll()
                 .mvcMatchers("/categorieen/toevoegen").hasAuthority(MANAGER)
                 .mvcMatchers("/**").permitAll();
     }
