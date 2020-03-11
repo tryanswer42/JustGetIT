@@ -1,21 +1,67 @@
 package be.vdab.justgetit.domain;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.Set;
 
+@Entity
+@Table(name = "categorieen")
 public class Categorie {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+    private String naam;
+    private long parentCategorie;
+    private boolean isSubcategorie;
+    private boolean winstmargeIsPercentage;
+    private BigDecimal winstmarge;
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "parentCategorie")
+    private Categorie parentCategory;
+    @OneToMany
+    @JoinColumn(name = "parentCategorie")
+    private Set<Categorie> subCategories;
 
-    private final long id;
-    private final String naam;
-    private final long parentCategorie;
-    private final boolean isSubcategorie;
-    private final boolean winstmargeIsPercentage;
-    private final BigDecimal winstmarge;
+
+    public void addSubCategorie(Categorie categorie) {
+
+    }
+    public void removeSubCategorie(Categorie categorie) {
+
+    }
+
+    public void setParentCategory(Categorie parentCategory) {
+        this.parentCategory = parentCategory;
+    }
+
+    public Categorie getParentCategory() {
+        return parentCategory;
+    }
+
+    public Set<Categorie> getSubCategories() {
+        return Collections.unmodifiableSet(subCategories);
+    }
+
+    protected Categorie() {
+    }
 
     public Categorie(long id, String naam, long parentCategorie, boolean isSubcategorie,
                      boolean winstmargeIsPercentage, BigDecimal winstmarge) {
         this.id = id;
         this.naam = naam;
         this.parentCategorie = parentCategorie;
+        this.isSubcategorie = isSubcategorie;
+        this.winstmargeIsPercentage = winstmargeIsPercentage;
+        this.winstmarge = winstmarge;
+    }
+
+
+
+    public Categorie(long id, String naam, boolean isSubcategorie,
+                     boolean winstmargeIsPercentage, BigDecimal winstmarge) {
+        this.id = id;
+        this.naam = naam;
         this.isSubcategorie = isSubcategorie;
         this.winstmargeIsPercentage = winstmargeIsPercentage;
         this.winstmarge = winstmarge;
