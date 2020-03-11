@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CategorieService {
-    long create(Categorie categorie);
+    void create(Categorie categorie);
     void update(Categorie categorie);
-    void delete(long id);
+    void delete(Categorie categorie);
     List<Categorie> findAll();
     Optional<Categorie> findById(long id);
 }

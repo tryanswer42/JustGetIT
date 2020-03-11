@@ -12,15 +12,15 @@ public class Categorie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String naam;
-    private long parentCategorie;
+//    private long parentId;
     private boolean isSubcategorie;
     private boolean winstmargeIsPercentage;
     private BigDecimal winstmarge;
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "parentCategorie")
+    @JoinColumn(name = "parentId")
     private Categorie parentCategory;
     @OneToMany
-    @JoinColumn(name = "parentCategorie")
+    @JoinColumn(name = "parentId")
     private Set<Categorie> subCategories;
 
 
@@ -35,9 +35,9 @@ public class Categorie {
         this.parentCategory = parentCategory;
     }
 
-    public Categorie getParentCategory() {
-        return parentCategory;
-    }
+//    public Categorie getParentId() {
+//        return parentCategory;
+//    }
 
     public Set<Categorie> getSubCategories() {
         return Collections.unmodifiableSet(subCategories);
@@ -46,16 +46,15 @@ public class Categorie {
     protected Categorie() {
     }
 
-    public Categorie(long id, String naam, long parentCategorie, boolean isSubcategorie,
-                     boolean winstmargeIsPercentage, BigDecimal winstmarge) {
-        this.id = id;
-        this.naam = naam;
-        this.parentCategorie = parentCategorie;
-        this.isSubcategorie = isSubcategorie;
-        this.winstmargeIsPercentage = winstmargeIsPercentage;
-        this.winstmarge = winstmarge;
-    }
-
+//    public Categorie(long id, String naam, long parentId, boolean isSubcategorie,
+//                     boolean winstmargeIsPercentage, BigDecimal winstmarge) {
+//        this.id = id;
+//        this.naam = naam;
+//        this.parentId = parentId;
+//        this.isSubcategorie = isSubcategorie;
+//        this.winstmargeIsPercentage = winstmargeIsPercentage;
+//        this.winstmarge = winstmarge;
+//    }
 
 
     public Categorie(long id, String naam, boolean isSubcategorie,
@@ -75,11 +74,11 @@ public class Categorie {
         return naam;
     }
 
-    public long getParentCategorie() {
-        return parentCategorie;
-    }
+//    public long getparentId() {
+//        return parentId;
+//    }
 
-    public boolean isSubcategorie() {
+    public boolean getIsSubcategorie() {
         return isSubcategorie;
     }
 

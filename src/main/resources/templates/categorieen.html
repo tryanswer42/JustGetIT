@@ -8,7 +8,7 @@
 
 <form method="post" th:action="@{/form}" th:object="${categor}">
     <label>Naam:
-    <input th:field="*{naam}" autofocus required>
+        <input th:field="*{naam}" autofocus required>
     </label>
     <label>Winstmarge:
         <input th:field="*{winstmarge}" required>
@@ -17,7 +17,7 @@
         <input type="checkbox" th:value="*{winstmargeIsPercentage}">
     </label>
     <label>Subcategorie:
-        <input type="checkbox" th:value="*{subcategorie}">
+        <input type="checkbox" th:value="*{isSubcategorie}">
     </label>
     <label>Parent Categorie:
         <select name="parentCategorie">

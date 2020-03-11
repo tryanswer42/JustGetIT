@@ -20,20 +20,20 @@ class DefaultCategorieService implements CategorieService {
 
     @Transactional(readOnly = false, isolation = Isolation.READ_COMMITTED)
     @Override
-    public long create(Categorie categorie) {
-        return categorieRepository.create(categorie);
+    public void create(Categorie categorie) {
+        categorieRepository.save(categorie);
     }
 
     @Override
     @Transactional(readOnly = false, isolation = Isolation.READ_COMMITTED)
     public void update(Categorie categorie) {
-        categorieRepository.update(categorie);
+        categorieRepository.save(categorie);
     }
 
     @Override
     @Transactional(readOnly = false, isolation = Isolation.READ_COMMITTED)
-    public void delete(long id) {
-        categorieRepository.delete(id);
+    public void delete(Categorie categorie) {
+        categorieRepository.delete(categorie);
     }
 
     @Override
