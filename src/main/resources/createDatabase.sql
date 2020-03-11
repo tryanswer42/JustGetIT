@@ -1,6 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `justgetit` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `justgetit`;
+<<<<<<<<< Temporary merge branch 1
 -- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
+=========
+-- MySQL dump 10.13  Distrib 8.0.18, for Win64 (x86_64)
+>>>>>>>>> Temporary merge branch 2
 --
 -- Host: localhost    Database: justgetit
 -- ------------------------------------------------------
@@ -31,6 +33,7 @@ CREATE TABLE `categorieen` (
   `isSubcategorie` tinyint(4) NOT NULL,
   `winstmargeIsPercentage` tinyint(4) NOT NULL DEFAULT '1',
   `winstmarge` decimal(12,2) NOT NULL DEFAULT '10.00',
+  `version` int NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `CategorieSubCategorie` (`parentId`),
   CONSTRAINT `CategorieSubCategorie` FOREIGN KEY (`parentId`) REFERENCES `categorieen` (`id`)
@@ -43,7 +46,7 @@ CREATE TABLE `categorieen` (
 
 LOCK TABLES `categorieen` WRITE;
 /*!40000 ALTER TABLE `categorieen` DISABLE KEYS */;
-INSERT INTO `categorieen` VALUES (4,'boeken',NULL,0,1,10.00),(5,'CD\'s',NULL,0,1,10.00),(6,'elektronische toestellen',NULL,0,1,10.00),(7,'kleding',NULL,0,1,10.00),(79,'testParent2',NULL,1,1,10.00);
+INSERT INTO `categorieen` VALUES (4,'boeken',NULL,0,1,10.00,1),(5,'CD\'s',NULL,0,1,10.00,1),(6,'elektronische toestellen',NULL,0,1,10.00,1),(7,'kleding',NULL,0,1,10.00,1);
 /*!40000 ALTER TABLE `categorieen` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -59,9 +62,10 @@ CREATE TABLE `producten` (
   `naam` varchar(45) NOT NULL,
   `aankoopprijs` decimal(12,2) NOT NULL,
   `verkoopprijs` decimal(12,2) NOT NULL,
-  `categorie` int(11) DEFAULT NULL,
-  `voorraad` int(11) DEFAULT NULL,
-  `minimaleBestelhoeveelheid` int(11) DEFAULT NULL,
+  `categorie` int DEFAULT NULL,
+  `voorraad` int DEFAULT NULL,
+  `minimaleBestelhoeveelheid` int DEFAULT NULL,
+  `version` int NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `naam_UNIQUE` (`naam`),
   KEY `productCategorie_idx` (`categorie`),
@@ -142,9 +146,10 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `naam` varchar(45) NOT NULL,
   `login` varchar(45) NOT NULL,
-  `wachtwoord` varchar(45) NOT NULL,
-  `isManager` tinyint(4) NOT NULL DEFAULT '0',
-  `isBediende` tinyint(4) NOT NULL DEFAULT '1',
+  `wachtwoord` varchar(255) NOT NULL,
+  `isManager` tinyint NOT NULL DEFAULT '0',
+  `isBediende` tinyint NOT NULL DEFAULT '1',
+  `enabled` tinyint DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `login_UNIQUE` (`login`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -156,7 +161,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'manager','manager','manager',0,1),(2,'bediende','bediende','bediende',0,1);
+INSERT INTO `users` VALUES (1,'manager','manager','{bcrypt}$2a$10$yXxcEKwK9eiRggZ1L5hHduIrUTW4fMyZnrTN6jmQdvX4gYHJKdyNC',0,1),(2,'bediende','bediende','{bcrypt}$2a$10$/rUxgaFVmYCKTfD..cSQOOBnbO95RyE8zl6TZ2PQE.q22oTC/2MjK',0,1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -169,4 +174,8 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+<<<<<<<<< Temporary merge branch 1
 -- Dump completed on 2020-03-11 13:38:38
+=========
+-- Dump completed on 2020-03-11 11:11:44
+>>>>>>>>> Temporary merge branch 2
