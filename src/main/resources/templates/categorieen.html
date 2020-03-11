@@ -2,13 +2,13 @@
 <html lang="nl" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments::head('Categorieen toevoegen')"></head>
 <body>
+<script th:src="@{/js/categorieen.js}"></script>
 <nav th:replace="fragments::menu"></nav>
-
-<h1>Hello world</h1>
+<h1>Categorieen toevoegen</h1>
 
 <form method="post" th:action="@{/form}" th:object="${categor}">
     <label>Naam:
-        <input th:field="*{naam}" autofocus required>
+    <input th:field="*{naam}" autofocus required>
     </label>
     <label>Winstmarge:
         <input th:field="*{winstmarge}" required>
@@ -17,10 +17,10 @@
         <input type="checkbox" th:value="*{winstmargeIsPercentage}">
     </label>
     <label>Subcategorie:
-        <input type="checkbox" th:value="*{isSubcategorie}">
+        <input type="checkbox" th:value="*{isSubcategorie}" id="subcategorie" th:default="false" onchange="flipVisibilty()">
     </label>
-    <label>Parent Categorie:
-        <select name="parentCategorie">
+    <label id="parent" class="hide">Parent Categorie:
+        <select name="parentCategorie" >
             <option th:each="categ:${categorieList}"  th:object="${categ}" th:value="*{naam}"><span th:text="*{naam}"></span>
             </option>
         </select>

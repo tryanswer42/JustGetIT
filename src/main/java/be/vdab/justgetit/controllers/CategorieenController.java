@@ -13,14 +13,14 @@ import java.math.BigDecimal;
 
 @Controller
 @RequestMapping("categorieen")
-public class CategorieenToevoegenController {
+public class CategorieenController {
     private final CategorieService categorieService;
 
-    public CategorieenToevoegenController(CategorieService categorieService) {
+    public CategorieenController(CategorieService categorieService) {
         this.categorieService = categorieService;
     }
 
-    @GetMapping
+    @GetMapping("/toevoegen")
     public ModelAndView showForm(){
 
         ModelAndView modelAndView = new ModelAndView("categorieen");
