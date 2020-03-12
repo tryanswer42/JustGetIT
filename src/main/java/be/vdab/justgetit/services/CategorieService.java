@@ -11,4 +11,5 @@ public interface CategorieService {
     void delete(Categorie categorie);
     List<Categorie> findAll();
     Optional<Categorie> findById(long id);
+    List<Categorie> findAllSpecifiekCategorie(boolean isSubctegorie);
 }

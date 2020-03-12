@@ -49,6 +49,6 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .mvcMatchers("/**").permitAll()
                 .mvcMatchers( "/","/login").permitAll()
                 .mvcMatchers("/categorieen/toevoegen").hasAuthority(MANAGER)
-                .mvcMatchers("/**").permitAll();
+                .mvcMatchers("/**").authenticated();
     }
 }

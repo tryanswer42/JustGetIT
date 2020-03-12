@@ -42,11 +42,14 @@ public class Categorie {
         }
         return toegevoegd;
     }
-    public boolean removeSubCategorie(Categorie subCategorie) {
-        boolean verwijd = subCategories.remove(subCategorie);
-//        to be continued
-        return verwijd;
-    }
+//    to be continue
+    /*public boolean removeSubCategorie(Categorie subCategorie) {
+        if(this.isSubcategorie) {
+            throw new IllegalArgumentException();
+        }
+        boolean verwijderd = subCategories.remove(subCategorie);
+        return verwijderd;
+    }*/
 
     public void setParentCategory(Categorie parentCategory) {
         if(!parentCategory.getSubCategories().contains(this)) {
