@@ -28,6 +28,11 @@ public class CategorieenController {
         this.categorieService = categorieService;
     }
 
+    @GetMapping
+    public String toonCategorieen() {
+        return "category";
+    }
+
     @GetMapping("/toevoegen")
     public ModelAndView showForm(){
 

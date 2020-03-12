@@ -45,4 +45,9 @@ class DefaultCategorieService implements CategorieService {
     public Optional<Categorie> findById(long id) {
         return categorieRepository.findById(id);
     }
+
+    @Override
+    public List<Categorie> findAllSpecifiekCategorie(boolean isSubctegorie) {
+        return categorieRepository.findByIsSubcategorieEquals(isSubctegorie);
+    }
 }
