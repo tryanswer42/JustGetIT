@@ -27,22 +27,42 @@ public class Categorie {
     @OneToMany
     @JoinColumn(name = "parentId")
     private Set<Categorie> subCategories;
+    @Version
+    private long version;
 
 
-    public void addSubCategorie(Categorie categorie) {
-
+    public boolean addSubCategorie(Categorie subCategorie) {
+        boolean toegevoegd = subCategories.add(subCategorie);
+        Categorie oudeParentCategorie = subCategorie.getParentCategory();
+        if(oudeParentCategorie != null && oudeParentCategorie != this) {
+            oudeParentCategorie.subCategories.remove(subCategorie);
+        }
+        if(oudeParentCategorie != this) {
+            subCategorie.setParentCategory(this);
+        }
+        return toegevoegd;
     }
-    public void removeSubCategorie(Categorie categorie) {
-
+    public boolean removeSubCategorie(Categorie subCategorie) {
+        boolean verwijd = subCategories.remove(subCategorie);
+//        to be continued
+        return verwijd;
     }
 
     public void setParentCategory(Categorie parentCategory) {
+        if(!parentCategory.getSubCategories().contains(this)) {
+            parentCategory.addSubCategorie(this);
+        }
         this.parentCategory = parentCategory;
     }
 
 //    public Categorie getParentId() {
 //        return parentCategory;
 //    }
+
+
+    public Categorie getParentCategory() {
+        return parentCategory;
+    }
 
     public Set<Categorie> getSubCategories() {
         return Collections.unmodifiableSet(subCategories);
