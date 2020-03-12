@@ -159,7 +159,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'manager','manager','manager',0,1,1),(2,'bediende','bediende','bediende',0,1,1);
+INSERT INTO `users` VALUES (1,'manager','manager','{bcrypt}$2a$10$yXxcEKwK9eiRggZ1L5hHduIrUTW4fMyZnrTN6jmQdvX4gYHJKdyNC',0,1,1),(2,'bediende','bediende','{bcrypt}$2a$10$/rUxgaFVmYCKTfD..cSQOOBnbO95RyE8zl6TZ2PQE.q22oTC/2MjK',0,1,1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
