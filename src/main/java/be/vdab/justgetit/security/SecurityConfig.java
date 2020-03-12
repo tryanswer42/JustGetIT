@@ -13,9 +13,14 @@ import javax.sql.DataSource;
 @Configuration
 @EnableWebSecurity
 class SecurityConfig extends WebSecurityConfigurerAdapter {
-    private static final String USERS_BY_USERNAME = "";
-    private static final String AUTHORITIES_BY_USERNAME = "";
-    private static final String MANAGER = "manager";
+    private static final String USERS_BY_USERNAME = "select login as username, wachtwoord as paswoord, '1' as enabled " +
+            "from users " +
+            "where login=?";
+    private static final String AUTHORITIES_BY_USERNAME = "select users.login as username, roles.naam as authorities " +
+            "from users inner join userroles on users.id = userroles.userId " +
+            "inner join roles on userroles.roleId = roles.id " +
+            "where users.login = ?";
+    private static final String MANAGER = "Manager";
 
     @Bean
     JdbcDaoImpl jdbcDao(DataSource dataSource) {
@@ -41,9 +46,9 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/categorieen")
                 .and()
                 .authorizeRequests()
-                .mvcMatchers("/**").permitAll()
+//                .mvcMatchers("/**").permitAll()
+                .mvcMatchers( "/login").permitAll()
                 .mvcMatchers("/categorieen/toevoegen").hasAuthority(MANAGER)
-                .mvcMatchers("/", "/login").permitAll()
-                .mvcMatchers("/**").authenticated();
+                .mvcMatchers("/**").permitAll();
     }
 }

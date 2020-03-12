@@ -4,7 +4,7 @@ USE `justgetit`;
 --
 -- Host: localhost    Database: justgetit
 -- ------------------------------------------------------
--- Server version	8.0.19
+-- Server version	8.0.18
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,17 +25,17 @@ DROP TABLE IF EXISTS `categorieen`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `categorieen` (
-  `id` int NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `naam` varchar(45) NOT NULL,
-  `parentId` int DEFAULT NULL,
-  `isSubcategorie` tinyint NOT NULL,
-  `winstmargeIsPercentage` tinyint NOT NULL DEFAULT '1',
+  `parentId` int(11) DEFAULT NULL,
+  `isSubcategorie` tinyint(4) NOT NULL,
+  `winstmargeIsPercentage` tinyint(4) NOT NULL DEFAULT '1',
   `winstmarge` decimal(12,2) NOT NULL DEFAULT '10.00',
   `version` int NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `CategorieSubCategorie` (`parentId`),
   CONSTRAINT `CategorieSubCategorie` FOREIGN KEY (`parentId`) REFERENCES `categorieen` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,7 @@ CREATE TABLE `categorieen` (
 
 LOCK TABLES `categorieen` WRITE;
 /*!40000 ALTER TABLE `categorieen` DISABLE KEYS */;
-INSERT INTO `categorieen` VALUES (4,'boeken',NULL,0,1,10.00,1),(5,'CD\'s',NULL,0,1,10.00,1),(6,'elektronische toestellen',NULL,0,1,10.00,1),(7,'kleding',NULL,0,1,10.00,1);
+INSERT INTO `categorieen` VALUES (4,'boeken',NULL,0,1,10.00),(5,'CD\'s',NULL,0,1,10.00),(6,'elektronische toestellen',NULL,0,1,10.00),(7,'kleding',NULL,0,1,10.00);
 /*!40000 ALTER TABLE `categorieen` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -68,7 +68,7 @@ CREATE TABLE `producten` (
   UNIQUE KEY `naam_UNIQUE` (`naam`),
   KEY `productCategorie_idx` (`categorie`),
   CONSTRAINT `productCategorie` FOREIGN KEY (`categorie`) REFERENCES `categorieen` (`id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150,7 +150,7 @@ CREATE TABLE `users` (
   `enabled` tinyint DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `login_UNIQUE` (`login`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

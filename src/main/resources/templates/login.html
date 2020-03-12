@@ -10,8 +10,11 @@
     </label>
     <label class="wachtwoord login">
         Wachtwoord
-        <input type="password" name="wachtwoord" required/>
+        <input type="password" name="password" required/>
     </label>
     <button class="ok login">Login</button>
+    <div th:if="${param.error} != null" class="fout">
+        Verkeerde gebruikersnaam of paswoord
+    </div>
 </form>
 </body>
