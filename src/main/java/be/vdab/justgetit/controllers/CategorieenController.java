@@ -46,7 +46,7 @@ public class CategorieenController {
 @PostMapping("/toevoegen/form")
     public  String categorieToevoegen(@Valid FormCategorieStap1 categorieStap1, Errors errors){
     if (errors.hasErrors()){
-        return "toevoegen";
+        return "redirect:/categorieen/toevoegen";
     }
     Categorie categorie = new Categorie(0, categorieStap1.getNaam(),
             categorieStap1.isSubCategorie(), categorieStap1.isPercentage(), categorieStap1.getWinstmarge());

@@ -46,7 +46,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/categorieen")
                 .and()
                 .authorizeRequests()
-//                .mvcMatchers("/**").permitAll()
+                .mvcMatchers("/**").permitAll()
                 .mvcMatchers( "/","/login").permitAll()
                 .mvcMatchers("/categorieen/toevoegen").hasAuthority(MANAGER)
                 .mvcMatchers("/**").authenticated();

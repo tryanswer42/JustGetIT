@@ -2,38 +2,40 @@
 <html lang="nl" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments::head('Categorieen toevoegen')"></head>
 <body>
-<script th:src="@{/js/categorieen.js}"></script>
+<script th:src="@{/js/categorieen.js}" defer></script>
 <nav th:replace="fragments::menu"></nav>
 <h1>Categorieen toevoegen</h1>
 
 <form method="post" th:action="@{/categorieen/toevoegen/form}" th:object="${formCategorieStap1}">
     <label>Naam:
+        <span th:errors="*{naam}"></span>
     <input th:field="*{naam}" autofocus required>
     </label>
     <label>Winstmarge:
+        <span th:errors="*{winstmarge}"></span>
         <input th:field="*{winstmarge}" required>
     </label>
     <label>Percent:
-        <input type="checkbox" th:value="*{percentage}">
+        <span th:errors="*{percentage}"></span>
+        <input type="checkbox" th:value="true" th:field="*{percentage}">
     </label>
     <label>Subcategorie:
-        <input type="checkbox" th:value="*{subCategorie}"
-               id="subcategorie" th:default="false"
+        <span th:errors="*{subCategorie}"></span>
+        <input type="checkbox" th:value="true"
+               th:field="*{subCategorie}"
                onchange="flipVisibilty()">
     </label>
     <label id="parent" class="hide">Parent Categorie:
-        <select name="parentCategorie">
+        <span th:errors="*{parentCategorieId}"></span>
+        <select th:field="*{parentCategorieId}">
             <option value="0" selected></option>
-            <option th:each="categ:${categorieList}"
-                    th:object="${categ}">
-                    th:value="*{id}">
-                <span th:text="*{naam}"></span>
+            <option th:each="categorieUnit:${categorieList}" th:value="${categorieUnit.id}">
+                <span th:text="${categorieUnit.naam}"></span>
             </option>
+<!--            <option th:each="categorieUnit:${categorieList}" th:value="${categorieUnit.id}">Test</option>-->
         </select>
     </label>
     <button>Toevoegen</button>
 </form>
-
-
 </body>
 </html>
