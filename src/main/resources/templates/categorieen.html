@@ -6,7 +6,7 @@
 <nav th:replace="fragments::menu"></nav>
 <h1>Categorieen toevoegen</h1>
 
-<form method="post" th:action="@{/categorieen/toevoegen/form}" th:object="${categor}">
+<form method="post" th:action="@{/categorieen/toevoegen/form}" th:object="${formCategorieStap1}">
     <label>Naam:
     <input th:field="*{naam}" autofocus required>
     </label>
@@ -14,23 +14,23 @@
         <input th:field="*{winstmarge}" required>
     </label>
     <label>Percent:
-        <input type="checkbox" th:value="*{winstmargeIsPercentage}">
+        <input type="checkbox" th:value="*{percentage}">
     </label>
     <label>Subcategorie:
-        <input type="checkbox" th:value="*{isSubcategorie}"
+        <input type="checkbox" th:value="*{subCategorie}"
                id="subcategorie" th:default="false"
                onchange="flipVisibilty()">
     </label>
     <label id="parent" class="hide">Parent Categorie:
-        <select name="parentCategorie" >
+        <select name="parentCategorie">
+            <option value="0" selected></option>
             <option th:each="categ:${categorieList}"
-                    th:object="${categ}"
-                    th:value="*{setParentCategory}">
+                    th:object="${categ}">
+                    th:value="*{id}">
                 <span th:text="*{naam}"></span>
             </option>
         </select>
     </label>
-    <input type="hidden" name="id" value="0">
     <button>Toevoegen</button>
 </form>
 
