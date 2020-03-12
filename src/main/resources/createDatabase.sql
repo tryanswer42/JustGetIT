@@ -38,20 +38,6 @@ CREATE TABLE `categorieen` (
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `categorieen`
---
-
-LOCK TABLES `categorieen` WRITE;
-/*!40000 ALTER TABLE `categorieen` DISABLE KEYS */;
-INSERT INTO `categorieen` VALUES (4,'boeken',NULL,0,1,10.00,1),(5,'CD\'s',NULL,0,1,10.00,1),(6,'elektronische toestellen',NULL,0,1,10.00,1),(7,'kleding',NULL,0,1,10.00,1);
-/*!40000 ALTER TABLE `categorieen` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `producten`
---
-
 DROP TABLE IF EXISTS `producten`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -70,10 +56,6 @@ CREATE TABLE `producten` (
   CONSTRAINT `productCategorie` FOREIGN KEY (`categorie`) REFERENCES `categorieen` (`id`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `producten`
---
 
 LOCK TABLES `producten` WRITE;
 /*!40000 ALTER TABLE `producten` DISABLE KEYS */;
