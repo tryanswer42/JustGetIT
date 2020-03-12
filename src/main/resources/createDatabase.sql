@@ -44,7 +44,7 @@ CREATE TABLE `categorieen` (
 
 LOCK TABLES `categorieen` WRITE;
 /*!40000 ALTER TABLE `categorieen` DISABLE KEYS */;
-INSERT INTO `categorieen` VALUES (4,'boeken',NULL,0,1,10.00),(5,'CD\'s',NULL,0,1,10.00),(6,'elektronische toestellen',NULL,0,1,10.00),(7,'kleding',NULL,0,1,10.00);
+INSERT INTO `categorieen` VALUES (4,'boeken',NULL,0,1,10.00,1),(5,'CD\'s',NULL,0,1,10.00,1),(6,'elektronische toestellen',NULL,0,1,10.00,1),(7,'kleding',NULL,0,1,10.00,1);
 /*!40000 ALTER TABLE `categorieen` ENABLE KEYS */;
 UNLOCK TABLES;
 
